@@ -131,27 +131,52 @@ class WTCApp {
         this.el.btnMicAllow.onclick = async () => {
             console.log('>>> USER: Allow microphone');
 
-            // MOBILE FIX: Explicitly request permission within user gesture
+            // 1. IMMEDIATE AUDIO UNLOCK (Crucial for iOS/Android)
+            // Play a silent utterance to unlock the TTS engine
+            const silent = new SpeechSynthesisUtterance("");
+            this.synthesis.speak(silent);
+
+            // 2. REQUEST MIC PERMISSION
             try {
+                // We must await this, but we've already triggered the TTS unlock above
                 const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-                // We just need the permission, so stop the stream immediately to avoid feedback/issues
                 stream.getTracks().forEach(track => track.stop());
-                console.log('>>> MIC PERMISSION GRANTED (Explicit)');
+                console.log('>>> MIC PERMISSION GRANTED');
             } catch (err) {
-                console.error('>>> MIC PERMISSION DENIED (Explicit):', err);
-                alert("Per favore, consenti l'accesso al microfono per parlare con Lupo.");
-                return; // Stop here if denied
+                console.error('>>> MIC PERMISSION DENIED:', err);
+                alert("Impossibile accedere al microfono. Controlla le impostazioni del browser.");
+                return;
             }
 
+            // 3. FAST TRANSITION (No artificial delays)
             this.el.micPermissionScreen.classList.remove('show');
+
+            // 4. INIT SPEECH RECOGNITION
             await this.initSpeech();
+
+            // 5. WARMUP RECOGNITION (Critical for iOS)
+            // Trigger recognition permission immediately while in user gesture
+            if (this.recognition) {
+                try {
+                    console.log('>>> WARMING UP SPEECH REC...');
+                    this.recognition.start();
+                    // Stop it shortly after to clear the "recording" state but keep permission
+                    setTimeout(() => {
+                        try { this.recognition.stop(); } catch (e) { }
+                    }, 500);
+                } catch (e) {
+                    console.warn('>>> Warmup warning:', e);
+                }
+            }
+
             this.micEnabled = true;
-            await this.wait(500);
+
+            // 6. START IMMEDIATELY
             this.start();
         };
 
-        this.el.btnMicDeny.onclick = async () => {
-            console.log('>>> USER: Deny microphone - Returning to home');
+        this.el.btnMicDeny.onclick = () => {
+            console.log('>>> USER: Deny microphone');
             window.location.href = './index.html';
         };
     }
