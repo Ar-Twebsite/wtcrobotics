@@ -130,6 +130,19 @@ class WTCApp {
 
         this.el.btnMicAllow.onclick = async () => {
             console.log('>>> USER: Allow microphone');
+
+            // MOBILE FIX: Explicitly request permission within user gesture
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                // We just need the permission, so stop the stream immediately to avoid feedback/issues
+                stream.getTracks().forEach(track => track.stop());
+                console.log('>>> MIC PERMISSION GRANTED (Explicit)');
+            } catch (err) {
+                console.error('>>> MIC PERMISSION DENIED (Explicit):', err);
+                alert("Per favore, consenti l'accesso al microfono per parlare con Lupo.");
+                return; // Stop here if denied
+            }
+
             this.el.micPermissionScreen.classList.remove('show');
             await this.initSpeech();
             this.micEnabled = true;
