@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WTC Robotics - Lupo Interactive Demo</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fflate@0.7.4/umd/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/FBXLoader.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div id="canvas-container"></div>
+
+        <header class="header">
+            <div class="logo">
+                <img src="WTC Robotics.png" alt="WTC Robotics" class="logo-icon-img">
+            </div>
+            <div class="status-indicator" id="status">
+                <span class="status-dot"></span>
+                <span class="status-text">Inizializzazione</span>
+            </div>
+        </header>
+
+        <div class="dialog-container">
+            <div class="dialog-box" id="dialogBox">
+                <div class="dialog-avatar">
+                    <div class="avatar-ring"></div>
+                    <div class="avatar-ring-2"></div>
+                    <span class="avatar-icon">🐺</span>
+                </div>
+                <div class="dialog-content">
+                    <div class="dialog-name">LUPO</div>
+                    <div class="dialog-text" id="dialogText">Inizializzazione...</div>
+                </div>
+            </div>
+
+            <div class="user-response" id="userResponse">
+                <div class="response-icon">👤</div>
+                <div class="response-text" id="responseText"></div>
+            </div>
+        </div>
+
+        <!-- Control Panel - REMOVED, all interaction is voice-based -->
+
+        <div class="debug-info" id="debugInfo">
+            <div class="debug-row"><span>State:</span><span id="debugState">INIT</span></div>
+            <div class="debug-row"><span>Mic:</span><span id="debugMic">-</span></div>
+            <div class="debug-row"><span>Anim:</span><span id="debugAnim">-</span></div>
+        </div>
+    </div>
+
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-content">
+            <div class="loading-logo">
+                <div class="logo-circle">
+                    <svg viewBox="0 0 40 40">
+                        <circle cx="20" cy="20" r="18" fill="none" stroke="currentColor" stroke-width="2" />
+                        <circle cx="20" cy="20" r="8" fill="currentColor" />
+                    </svg>
+                </div>
+                <div class="loading-text">WTC ROBOTICS</div>
+            </div>
+            <div class="loading-bar">
+                <div class="loading-progress" id="loadingProgress"></div>
+            </div>
+            <div class="loading-status" id="loadingStatus">Caricamento...</div>
+        </div>
+    </div>
+
+    <div class="mic-permission-screen" id="micPermissionScreen">
+        <div class="mic-permission-content">
+            <div class="mic-icon-large">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" />
+                    <path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4M8 23h8" />
+                </svg>
+            </div>
+            <h2 class="mic-title">Abilita il Microfono</h2>
+            <p class="mic-description">
+                Per un'esperienza interattiva completa, Lupo ha bisogno<br>
+                di accedere al microfono per ascoltare le tue risposte.
+            </p>
+            <div class="mic-buttons">
+                <button class="btn-mic-allow" id="btnMicAllow">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M20 6L9 17l-5-5" />
+                    </svg>
+                    <span>Abilita Microfono</span>
+                </button>
+                <button class="btn-mic-deny" id="btnMicDeny" onclick="window.location.href='./index.html'">
+                    <span>Torna alla Home</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
