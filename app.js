@@ -28,9 +28,9 @@ const MOCK = {
         { name: 'CloudServe SRL', contact: 'Anna Neri', keywords: ['cloud', 'server', 'hosting', 'network', 'reti', 'sicurezza', 'cyber'] },
         { name: 'EcoBuild', contact: 'Roberto Gialli', keywords: ['edilizia', 'costruzioni', 'architettura', 'design', 'immobiliare', 'real estate'] },
         { name: 'FinanceNow', contact: 'Sofia Blu', keywords: ['finanza', 'banche', 'investimenti', 'crypto', 'soldi', 'economia', 'assicurazione'] },
-        { name: 'LegalPoint', contact: 'Avv. Ferrari', keywords: ['legale', 'avvocato', 'diritto', 'leggi', 'normative', 'compliance'] },
-        { name: 'HealthCare Plus', contact: 'Dott. Romano', keywords: ['salute', 'medicina', 'sanità', 'benessere', 'pharma', 'biotech'] },
-        { name: 'AutoMotive Group', contact: 'Ing. Conti', keywords: ['auto', 'motori', 'meccanica', 'trasporti', 'logistica', 'veicoli'] },
+        { name: 'LegalPoint', contact: 'Avvocato Ferrari', keywords: ['legale', 'avvocato', 'diritto', 'leggi', 'normative', 'compliance'] },
+        { name: 'HealthCare Plus', contact: 'Dottore Romano', keywords: ['salute', 'medicina', 'sanità', 'benessere', 'pharma', 'biotech'] },
+        { name: 'AutoMotive Group', contact: 'Ingegnere Conti', keywords: ['auto', 'motori', 'meccanica', 'trasporti', 'logistica', 'veicoli'] },
         { name: 'Food & Wine Co', contact: 'Chef Esposito', keywords: ['cibo', 'ristorazione', 'vino', 'food', 'beverage', 'agrifood'] }
     ],
     menu: ['Lasagna alla bolognese', 'Filetto al pepe verde', 'Verdure grigliate', 'Tiramisù artigianale', 'Insalata di mare', 'Risotto ai funghi porcini'],

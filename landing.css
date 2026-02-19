@@ -114,6 +114,13 @@
         --shadow-brand: 0 8px 20px rgba(255, 102, 0, 0.25);
     }
 
+    /* FIX MOBILE OVERFLOW */
+    .orb-1,
+    .orb-2 {
+        width: 300px !important;
+        height: 300px !important;
+    }
+
     /* MOBILE PERFORMANCE FIX #1: Disable orb animations and reduce blur */
     .hero-gradient,
     .glow-orb {
@@ -169,6 +176,7 @@
 
 /* ========== BASE STYLES ========== */
 html {
+    overflow-x: hidden;
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
